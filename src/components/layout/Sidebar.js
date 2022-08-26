@@ -1,4 +1,5 @@
 import React from "react";
+import ListadoProyectos from "../proyectos/ListadoProyectos";
 import NuevoProyecto from "../proyectos/NuevoProyecto";
 
 const Sidebar = () => {
@@ -12,6 +13,7 @@ const Sidebar = () => {
 
       <div className="proyectos">
         <h2>Tus proyectos</h2>
+        <ListadoProyectos />
       </div>
     </aside>
   );
