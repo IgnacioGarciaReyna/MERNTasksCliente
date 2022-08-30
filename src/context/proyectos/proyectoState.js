@@ -4,7 +4,7 @@ import proyectoReducer from "./proyectoReducer";
 
 const ProyectoState = (props) => {
   const initialState = {
-    formulario: false,
+    formulario: true,
   };
 
   //Dispatch para ejecutar las acciones
@@ -18,7 +18,7 @@ const ProyectoState = (props) => {
     <proyectoContext.Provider
       // El value es un objeto donde pasamos nuestro state inicial, que en este caso es "formulario"
       value={{
-        nuevo: state.formulario,
+        formulario: state.formulario,
       }}
     >
       {/* props.children sirve para que lo que le vayamos a pasar, los diferentes componentes que sean hijos de este provider se pasen los datos a lo largo de los distintos componentes*/}

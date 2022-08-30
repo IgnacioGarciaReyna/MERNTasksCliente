@@ -1,6 +1,14 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useContext, useState } from "react";
+import proyectoContext from "../../context/proyectos/proyectoContext";
 
 const NuevoProyecto = () => {
+  //Obtener state del formulario
+  //Dentro de los parentesis va el context que queremos utilizar
+  const proyectosContext = useContext(proyectoContext);
+
+  //Extraer el formulario (boolean)
+  const { formulario } = proyectosContext;
+
   //State para proyecto
   //Es un objeto y no un string porque debemos darle un id para que no halla problema por dos proyectos con el mismo nombre. El id se dará con una librería
   const [proyecto, guardarProyecto] = useState({
@@ -35,21 +43,23 @@ const NuevoProyecto = () => {
       <button type="button" className="btn btn-block btn-primario">
         Nuevo proyecto
       </button>
-      <form className="formulario-nuevo-proyecto" onSubmit={onSubmitProyecto}>
-        <input
-          type="text"
-          className="input-text"
-          placeholder="Nombre Proyecto"
-          name="nombre"
-          value={nombre}
-          onChange={onChangeProyecto}
-        />
-        <input
-          type="submit"
-          className="btn btn-primario btn-block"
-          value="Agregar Proyecto"
-        />
-      </form>
+      {formulario ? (
+        <form className="formulario-nuevo-proyecto" onSubmit={onSubmitProyecto}>
+          <input
+            type="text"
+            className="input-text"
+            placeholder="Nombre Proyecto"
+            name="nombre"
+            value={nombre}
+            onChange={onChangeProyecto}
+          />
+          <input
+            type="submit"
+            className="btn btn-primario btn-block"
+            value="Agregar Proyecto"
+          />
+        </form>
+      ) : null}
     </Fragment>
   );
 };
