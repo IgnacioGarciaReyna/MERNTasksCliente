@@ -6,8 +6,8 @@ const NuevoProyecto = () => {
   //Dentro de los parentesis va el context que queremos utilizar
   const proyectosContext = useContext(proyectoContext);
 
-  //Extraer el formulario (boolean)
-  const { formulario } = proyectosContext;
+  //Extraer el formulario (boolean) y mostrarFormulario (function)
+  const { formulario, mostrarFormulario } = proyectosContext;
 
   //State para proyecto
   //Es un objeto y no un string porque debemos darle un id para que no halla problema por dos proyectos con el mismo nombre. El id se dará con una librería
@@ -38,9 +38,19 @@ const NuevoProyecto = () => {
     //Reiniciar el form
   };
 
+  //Mostrar formulario
+  //Esta es una de las ventajas de usar context y reducer, en vez de estar pasando props por varios componentes podes consumir datos como funciones de forma centralizada
+  const onClickFormulario = () => {
+    mostrarFormulario();
+  };
+
   return (
     <Fragment>
-      <button type="button" className="btn btn-block btn-primario">
+      <button
+        type="button"
+        className="btn btn-block btn-primario"
+        onClick={onClickFormulario}
+      >
         Nuevo proyecto
       </button>
       {formulario ? (
