@@ -1,12 +1,14 @@
 import React, { useReducer } from "react";
+import { v4 as uuid } from "uuid";
 import proyectoContext from "./proyectoContext";
 import proyectoReducer from "./proyectoReducer";
-import { FORMULARIO_PROYECTO, OBTENER_PROYECTOS } from "../../types";
-
-
+import {
+  AGREGAR_PROYECTO,
+  FORMULARIO_PROYECTO,
+  OBTENER_PROYECTOS,
+} from "../../types";
 
 const ProyectoState = (props) => {
-
   const proyectos = [
     { id: 1, nombre: "Tienda Virtual" },
     { id: 2, nombre: "Intranet" },
@@ -48,6 +50,19 @@ const ProyectoState = (props) => {
     });
   };
 
+  //Agregar nuevo proyecto
+  const agregarProyecto = (proyecto) => {
+    proyecto.id = uuid();
+
+    //Insertar el proyecto en el state
+    //El type del dispatch va a ser agregar proyecto
+    //El payload que se le pasa para cambiar el state es el proyecto
+    dispatch({
+      type: AGREGAR_PROYECTO,
+      payload: proyecto,
+    });
+  };
+
   return (
     <proyectoContext.Provider
       // El value es un objeto donde pasamos nuestro state inicial, que en este caso es "formulario"
@@ -55,7 +70,8 @@ const ProyectoState = (props) => {
         proyectos: state.proyectos,
         formulario: state.formulario,
         mostrarFormulario,
-        obtenerProyectos
+        obtenerProyectos,
+        agregarProyecto,
       }}
     >
       {/* props.children sirve para que lo que le vayamos a pasar, los diferentes componentes que sean hijos de este provider se pasen los datos a lo largo de los distintos componentes*/}

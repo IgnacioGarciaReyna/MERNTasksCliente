@@ -7,7 +7,7 @@ const NuevoProyecto = () => {
   const proyectosContext = useContext(proyectoContext);
 
   //Extraer el formulario (boolean) y mostrarFormulario (function)
-  const { formulario, mostrarFormulario } = proyectosContext;
+  const { formulario, mostrarFormulario, agregarProyecto } = proyectosContext;
 
   //State para proyecto
   //Es un objeto y no un string porque debemos darle un id para que no halla problema por dos proyectos con el mismo nombre. El id se dará con una librería
@@ -32,10 +32,17 @@ const NuevoProyecto = () => {
     e.preventDefault();
 
     //Validar el proyecto
+    if (nombre === "") {
+      return;
+    }
 
     //Agregar al state
+    agregarProyecto(proyecto);
 
     //Reiniciar el form
+    guardarProyecto({
+      nombre:""
+    })
   };
 
   //Mostrar formulario
