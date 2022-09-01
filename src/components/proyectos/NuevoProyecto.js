@@ -7,7 +7,13 @@ const NuevoProyecto = () => {
   const proyectosContext = useContext(proyectoContext);
 
   //Extraer el formulario (boolean) y mostrarFormulario (function)
-  const { formulario, mostrarFormulario, agregarProyecto } = proyectosContext;
+  const {
+    formulario,
+    errorformulario,
+    mostrarFormulario,
+    agregarProyecto,
+    mostrarError,
+  } = proyectosContext;
 
   //State para proyecto
   //Es un objeto y no un string porque debemos darle un id para que no halla problema por dos proyectos con el mismo nombre. El id se dará con una librería
@@ -33,6 +39,7 @@ const NuevoProyecto = () => {
 
     //Validar el proyecto
     if (nombre === "") {
+      mostrarError();
       return;
     }
 
@@ -41,8 +48,8 @@ const NuevoProyecto = () => {
 
     //Reiniciar el form
     guardarProyecto({
-      nombre:""
-    })
+      nombre: "",
+    });
   };
 
   //Mostrar formulario
@@ -76,6 +83,10 @@ const NuevoProyecto = () => {
             value="Agregar Proyecto"
           />
         </form>
+      ) : null}
+
+      {errorformulario ? (
+        <p className="mensaje error">El nombre es obligatorio</p>
       ) : null}
     </Fragment>
   );

@@ -4,6 +4,7 @@ import {
   FORMULARIO_PROYECTO,
   OBTENER_PROYECTOS,
   AGREGAR_PROYECTO,
+  VALIDAR_FORMULARIO,
 } from "../../types";
 
 export default (state, action) => {
@@ -27,8 +28,15 @@ export default (state, action) => {
         //Una vez que agrego el proyecto pongo formulario en false, para que se cierre la ventana de agregar proyecto (reiniciar el form se hace en nuevoProyecto.js)
         ...state,
         proyectos: [...state.proyectos, action.payload],
-        formulario: false
+        formulario: false,
+        errorformulario: false,
       };
+    case VALIDAR_FORMULARIO:
+      return {
+        ...state,
+        errorformulario: true,
+      };
+
     default:
       return state;
   }

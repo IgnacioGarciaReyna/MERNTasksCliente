@@ -2,6 +2,7 @@
 //Pueden ser login de usuario, si fue login correcto o incorrecto, a partir de eso podes ir ejecutando partes del código
 
 //Por convención para escribir los types se escribe todo en mayuscula, usualmente dos palabras, pero puede ser una sola.
-export const FORMULARIO_PROYECTO = 'FORMULARIO_PROYECTO'
-export const OBTENER_PROYECTOS = 'OBTENER_PROYECTOS'
-export const AGREGAR_PROYECTO = 'AGREGAR_PROYECTO'
+export const FORMULARIO_PROYECTO = "FORMULARIO_PROYECTO";
+export const OBTENER_PROYECTOS = "OBTENER_PROYECTOS";
+export const AGREGAR_PROYECTO = "AGREGAR_PROYECTO";
+export const VALIDAR_FORMULARIO = "VALIDAR_FORMULARIO";

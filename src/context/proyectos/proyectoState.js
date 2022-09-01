@@ -6,6 +6,7 @@ import {
   AGREGAR_PROYECTO,
   FORMULARIO_PROYECTO,
   OBTENER_PROYECTOS,
+  VALIDAR_FORMULARIO,
 } from "../../types";
 
 const ProyectoState = (props) => {
@@ -20,6 +21,7 @@ const ProyectoState = (props) => {
     //Arreglo escrito a mano
     proyectos: [],
     formulario: false,
+    errorformulario: false,
   };
 
   //Dispatch para ejecutar las acciones
@@ -63,15 +65,25 @@ const ProyectoState = (props) => {
     });
   };
 
+  //Validar foirmulario por errores
+  const mostrarError = () => {
+    //No toma payload
+    dispatch({
+      type: VALIDAR_FORMULARIO,
+    });
+  };
+
   return (
     <proyectoContext.Provider
-      // El value es un objeto donde pasamos nuestro state inicial, que en este caso es "formulario"
+      // El value es un objeto donde pasamos nuestro state inicial
       value={{
         proyectos: state.proyectos,
         formulario: state.formulario,
+        errorformulario: state.errorformulario,
         mostrarFormulario,
         obtenerProyectos,
         agregarProyecto,
+        mostrarError,
       }}
     >
       {/* props.children sirve para que lo que le vayamos a pasar, los diferentes componentes que sean hijos de este provider se pasen los datos a lo largo de los distintos componentes*/}
