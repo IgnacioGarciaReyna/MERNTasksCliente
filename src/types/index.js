@@ -3,3 +3,4 @@
 
 //Por convención para escribir los types se escribe todo en mayuscula, usualmente dos palabras, pero puede ser una sola.
 export const FORMULARIO_PROYECTO = 'FORMULARIO_PROYECTO'
+export const OBTENER_PROYECTOS = 'OBTENER_PROYECTOS'

@@ -1,17 +1,22 @@
 import React, { useReducer } from "react";
 import proyectoContext from "./proyectoContext";
 import proyectoReducer from "./proyectoReducer";
-import { FORMULARIO_PROYECTO } from "../../types";
+import { FORMULARIO_PROYECTO, OBTENER_PROYECTOS } from "../../types";
+
+
 
 const ProyectoState = (props) => {
+
+  const proyectos = [
+    { id: 1, nombre: "Tienda Virtual" },
+    { id: 2, nombre: "Intranet" },
+    { id: 3, nombre: "Diseño de sitio web" },
+    { id: 4, nombre: "MERN" },
+  ];
+
   const initialState = {
     //Arreglo escrito a mano
-    proyectos: [
-      { id: 1, nombre: "Tienda Virtual" },
-      { id: 2, nombre: "Intranet" },
-      { id: 3, nombre: "Diseño de sitio web" },
-      { id: 4, nombre: "MERN" },
-    ],
+    proyectos: [],
     formulario: false,
   };
 
@@ -33,6 +38,16 @@ const ProyectoState = (props) => {
     });
   };
 
+  //Obtener los proyectos
+  //Siempre lo que tome como parametro la función va a ser el payloud
+  //Se pasa el array de proyectos como parte del payload
+  const obtenerProyectos = () => {
+    dispatch({
+      type: OBTENER_PROYECTOS,
+      payload: proyectos,
+    });
+  };
+
   return (
     <proyectoContext.Provider
       // El value es un objeto donde pasamos nuestro state inicial, que en este caso es "formulario"
@@ -40,6 +55,7 @@ const ProyectoState = (props) => {
         proyectos: state.proyectos,
         formulario: state.formulario,
         mostrarFormulario,
+        obtenerProyectos
       }}
     >
       {/* props.children sirve para que lo que le vayamos a pasar, los diferentes componentes que sean hijos de este provider se pasen los datos a lo largo de los distintos componentes*/}
