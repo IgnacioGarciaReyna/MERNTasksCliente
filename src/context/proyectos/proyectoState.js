@@ -7,6 +7,7 @@ import {
   FORMULARIO_PROYECTO,
   OBTENER_PROYECTOS,
   VALIDAR_FORMULARIO,
+  PROYECTO_ACTUAL,
 } from "../../types";
 
 const ProyectoState = (props) => {
@@ -22,6 +23,7 @@ const ProyectoState = (props) => {
     proyectos: [],
     formulario: false,
     errorformulario: false,
+    proyecto: null,
   };
 
   //Dispatch para ejecutar las acciones
@@ -73,6 +75,15 @@ const ProyectoState = (props) => {
     });
   };
 
+  //Selecciona el proyecto que el usuario dio click
+  const proyectoActual = (proyectoId) => {
+    dispatch({
+      type: PROYECTO_ACTUAL,
+      //El payload es el proyecto al que el usuario le da click, le pasamos el proyecto completo
+      payload: proyectoId,
+    });
+  };
+
   return (
     <proyectoContext.Provider
       // El value es un objeto donde pasamos nuestro state inicial
@@ -80,10 +91,12 @@ const ProyectoState = (props) => {
         proyectos: state.proyectos,
         formulario: state.formulario,
         errorformulario: state.errorformulario,
+        proyecto: state.proyecto,
         mostrarFormulario,
         obtenerProyectos,
         agregarProyecto,
         mostrarError,
+        proyectoActual,
       }}
     >
       {/* props.children sirve para que lo que le vayamos a pasar, los diferentes componentes que sean hijos de este provider se pasen los datos a lo largo de los distintos componentes*/}

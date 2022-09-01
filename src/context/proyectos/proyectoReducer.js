@@ -5,6 +5,7 @@ import {
   OBTENER_PROYECTOS,
   AGREGAR_PROYECTO,
   VALIDAR_FORMULARIO,
+  PROYECTO_ACTUAL,
 } from "../../types";
 
 export default (state, action) => {
@@ -35,6 +36,12 @@ export default (state, action) => {
       return {
         ...state,
         errorformulario: true,
+      };
+    case PROYECTO_ACTUAL:
+      return {
+        ...state,
+        //En el filter iteramos, por cada proyecto compararemos el id del proyecto con el id del payload
+        proyecto: state.proyectos.filter(proyecto => proyecto.id === action.payload)
       };
 
     default:
