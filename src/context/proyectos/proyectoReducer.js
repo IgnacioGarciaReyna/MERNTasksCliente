@@ -6,6 +6,7 @@ import {
   AGREGAR_PROYECTO,
   VALIDAR_FORMULARIO,
   PROYECTO_ACTUAL,
+  ELIMINAR_PROYECTO,
 } from "../../types";
 
 export default (state, action) => {
@@ -41,7 +42,19 @@ export default (state, action) => {
       return {
         ...state,
         //En el filter iteramos, por cada proyecto compararemos el id del proyecto con el id del payload
-        proyecto: state.proyectos.filter(proyecto => proyecto.id === action.payload)
+        proyecto: state.proyectos.filter(
+          (proyecto) => proyecto.id === action.payload
+        ),
+      };
+    case ELIMINAR_PROYECTO:
+      return {
+        ...state,
+        //Para eliminar queres que traiga todos menos el que vos queres traer. Osea filtrar todos, menos el que sea igual que el queremos borrar
+        proyectos: state.proyectos.filter(
+          (proyecto) => proyecto.id !== action.payload
+        ),
+        //Para que el state vuelva a estar null. Si no queda marcado el proyecto que acabamos de eliminar
+        proyecto: null
       };
 
     default:
