@@ -14,12 +14,7 @@ const ListadoTareas = () => {
   //Extraemos la posición 0. Si hubiera mas elementos, se agregan mas separados con comas y se extraen esas otras posiciones
   const [proyectoActual] = proyecto;
 
-  const tareasProyecto = [
-    { id: 1, nombre: "Elegir Plataforma", estado: true },
-    { id: 2, nombre: "Elegir Colores", estado: false },
-    { id: 3, nombre: "Elegir Pagos", estado: false },
-    { id: 4, nombre: "Elegir Hosting", estado: true },
-  ];
+  const tareasProyecto = [];
 
   //Eliminar un proyecto
   const onClickEliminar = () => {
