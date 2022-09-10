@@ -7,6 +7,7 @@ import { TAREAS_PROYECTO } from "../../types";
 //Pasamos las props y creamos el state inicial
 const TareaState = (props) => {
   const intialState = {
+    //Todas las tareas
     tareas: [
       { id: 1, nombre: "Elegir Plataforma", estado: true, proyectoId: 1 },
       { id: 2, nombre: "Elegir Colores", estado: false, proyectoId: 2 },
@@ -22,6 +23,9 @@ const TareaState = (props) => {
       { id: 2, nombre: "Elegir Colores", estado: false, proyectoId: 4 },
       { id: 3, nombre: "Elegir Pagos", estado: false, proyectoId: 3 },
     ],
+    //Tareas del proyecto
+    //Al principio no va a haber ninguna, porque el usuario tiene que seleccionar alguno
+    tareasproyecto: null,
   };
 
   //Dispatch y state que vendran de useReducer.
@@ -44,7 +48,13 @@ const TareaState = (props) => {
   //props.children son los otros componentes que son hijos de este
   //En el value le estamos pasando las tareas al provider, las tareas se obtienen de state.tareas porque sería initialState.tareas
   return (
-    <TareaContext.Provider value={{ tareas: state.tareas, obtenerTareas }}>
+    <TareaContext.Provider
+      value={{
+        tareas: state.tareas,
+        tareasproyecto: state.tareasproyecto,
+        obtenerTareas,
+      }}
+    >
       {props.children}
     </TareaContext.Provider>
   );

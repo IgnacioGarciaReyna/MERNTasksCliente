@@ -1,5 +1,6 @@
 import React, { Fragment, useContext } from "react";
 import proyectoContext from "../../context/proyectos/proyectoContext";
+import tareaContext from "../../context/tareas/tareaContext";
 import Tarea from "./Tareas";
 
 const ListadoTareas = () => {
@@ -7,14 +8,16 @@ const ListadoTareas = () => {
   const proyectosContext = useContext(proyectoContext);
   const { proyecto, eliminarProyecto } = proyectosContext;
 
+  //Obtener las tareasproyecto
+  const tareasContext = useContext(tareaContext);
+  const { tareasproyecto } = tareasContext;
+
   //Validación. Si no hay ningún proyecto seleccionado
   if (!proyecto) return <h2>Selecciona un proyecto</h2>;
 
   //Array destructuring -> para extraer el proyecto actual
   //Extraemos la posición 0. Si hubiera mas elementos, se agregan mas separados con comas y se extraen esas otras posiciones
   const [proyectoActual] = proyecto;
-
-  const tareasProyecto = [];
 
   //Eliminar un proyecto
   const onClickEliminar = () => {
@@ -25,12 +28,12 @@ const ListadoTareas = () => {
     <Fragment>
       <h2>Proyecto: {proyectoActual.nombre}</h2>
       <ul className="listado-tareas">
-        {tareasProyecto.length === 0 ? (
+        {tareasproyecto .length === 0 ? (
           <li className="tarea">
             <p>No hay tareas</p>
           </li>
         ) : (
-          tareasProyecto.map((tarea) => <Tarea key={tarea.id} tarea={tarea} />)
+          tareasproyecto .map((tarea) => <Tarea key={tarea.id} tarea={tarea} />)
         )}
       </ul>
 
