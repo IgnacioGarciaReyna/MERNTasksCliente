@@ -2,7 +2,7 @@ import React, { useReducer } from "react";
 import TareaContext from "./tareaContext";
 import TareaReducer from "./tareaReducer";
 
-import { TAREAS_PROYECTO } from "../../types";
+import { AGREGAR_TAREA, TAREAS_PROYECTO } from "../../types";
 
 //Pasamos las props y creamos el state inicial
 const TareaState = (props) => {
@@ -44,6 +44,15 @@ const TareaState = (props) => {
     });
   };
 
+  //Agregar una tarea al proyecto seleccionado
+  //Toma y pasa una tarea completa (objeto) al state tareaReducer
+  const agregarTarea = (tarea) => {
+    dispatch({
+      type: AGREGAR_TAREA,
+      payload: tarea,
+    });
+  };
+
   //Retornamos nuestro context
   //props.children son los otros componentes que son hijos de este
   //En el value le estamos pasando las tareas al provider, las tareas se obtienen de state.tareas porque sería initialState.tareas
@@ -53,6 +62,7 @@ const TareaState = (props) => {
         tareas: state.tareas,
         tareasproyecto: state.tareasproyecto,
         obtenerTareas,
+        agregarTarea,
       }}
     >
       {props.children}

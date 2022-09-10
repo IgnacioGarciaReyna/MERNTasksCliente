@@ -13,9 +13,22 @@ const FormTarea = () => {
   //Extraemos la posición 0. Si hubiera mas elementos, se agregan mas separados con comas y se extraen esas otras posiciones
   const [proyectoActual] = proyecto;
 
+  //Función onsubmit
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    //Validar
+
+    //Pasar la validación
+
+    //Agregar la nueva tarea al state principal
+
+    //Reiniciar el form
+  };
+
   return (
     <div className="formulario">
-      <form>
+      <form onSubmit={onSubmit}>
         <div className="contenedor-input">
           <input
             type="text"
