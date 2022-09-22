@@ -2,7 +2,12 @@ import React, { useReducer } from "react";
 import TareaContext from "./tareaContext";
 import TareaReducer from "./tareaReducer";
 
-import { AGREGAR_TAREA, TAREAS_PROYECTO, VALIDAR_TAREA } from "../../types";
+import {
+  AGREGAR_TAREA,
+  ELIMINAR_TAREA,
+  TAREAS_PROYECTO,
+  VALIDAR_TAREA,
+} from "../../types";
 
 //Pasamos las props y creamos el state inicial
 const TareaState = (props) => {
@@ -13,15 +18,15 @@ const TareaState = (props) => {
       { id: 2, nombre: "Elegir Colores", estado: false, proyectoId: 2 },
       { id: 3, nombre: "Elegir Pagos", estado: false, proyectoId: 3 },
       { id: 4, nombre: "Elegir Hosting", estado: true, proyectoId: 4 },
-      { id: 1, nombre: "Elegir Plataforma", estado: true, proyectoId: 1 },
-      { id: 2, nombre: "Elegir Colores", estado: false, proyectoId: 2 },
-      { id: 3, nombre: "Elegir Pagos", estado: false, proyectoId: 3 },
-      { id: 1, nombre: "Elegir Plataforma", estado: true, proyectoId: 4 },
-      { id: 2, nombre: "Elegir Colores", estado: false, proyectoId: 1 },
-      { id: 3, nombre: "Elegir Pagos", estado: false, proyectoId: 2 },
-      { id: 1, nombre: "Elegir Plataforma", estado: true, proyectoId: 3 },
-      { id: 2, nombre: "Elegir Colores", estado: false, proyectoId: 4 },
-      { id: 3, nombre: "Elegir Pagos", estado: false, proyectoId: 3 },
+      { id: 5, nombre: "Elegir Plataforma", estado: true, proyectoId: 1 },
+      { id: 6, nombre: "Elegir Colores", estado: false, proyectoId: 2 },
+      { id: 7, nombre: "Elegir Pagos", estado: false, proyectoId: 3 },
+      { id: 8, nombre: "Elegir Plataforma", estado: true, proyectoId: 4 },
+      { id: 9, nombre: "Elegir Colores", estado: false, proyectoId: 1 },
+      { id: 10, nombre: "Elegir Pagos", estado: false, proyectoId: 2 },
+      { id: 11, nombre: "Elegir Plataforma", estado: true, proyectoId: 3 },
+      { id: 12, nombre: "Elegir Colores", estado: false, proyectoId: 4 },
+      { id: 13, nombre: "Elegir Pagos", estado: false, proyectoId: 3 },
     ],
     //Tareas del proyecto
     //Al principio no va a haber ninguna, porque el usuario tiene que seleccionar alguno
@@ -62,6 +67,14 @@ const TareaState = (props) => {
     });
   };
 
+  //Eliminar tarea por id
+  const eliminarTarea = (id) => {
+    dispatch({
+      type: ELIMINAR_TAREA,
+      payload: id,
+    });
+  };
+
   //Retornamos nuestro context
   //props.children son los otros componentes que son hijos de este
   //En el value le estamos pasando las tareas al provider, las tareas se obtienen de state.tareas porque sería initialState.tareas
@@ -74,6 +87,7 @@ const TareaState = (props) => {
         obtenerTareas,
         agregarTarea,
         validarTarea,
+        eliminarTarea,
       }}
     >
       {props.children}
