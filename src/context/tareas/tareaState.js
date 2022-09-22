@@ -2,7 +2,7 @@ import React, { useReducer } from "react";
 import TareaContext from "./tareaContext";
 import TareaReducer from "./tareaReducer";
 
-import { AGREGAR_TAREA, TAREAS_PROYECTO } from "../../types";
+import { AGREGAR_TAREA, TAREAS_PROYECTO, VALIDAR_TAREA } from "../../types";
 
 //Pasamos las props y creamos el state inicial
 const TareaState = (props) => {
@@ -26,6 +26,7 @@ const TareaState = (props) => {
     //Tareas del proyecto
     //Al principio no va a haber ninguna, porque el usuario tiene que seleccionar alguno
     tareasproyecto: null,
+    errortarea: false,
   };
 
   //Dispatch y state que vendran de useReducer.
@@ -53,6 +54,14 @@ const TareaState = (props) => {
     });
   };
 
+  //Valida y muestra un error en caso de que sea necesario
+  const validarTarea = () => {
+    dispatch({
+      //No toma ningún payload
+      type: VALIDAR_TAREA,
+    });
+  };
+
   //Retornamos nuestro context
   //props.children son los otros componentes que son hijos de este
   //En el value le estamos pasando las tareas al provider, las tareas se obtienen de state.tareas porque sería initialState.tareas
@@ -61,8 +70,10 @@ const TareaState = (props) => {
       value={{
         tareas: state.tareas,
         tareasproyecto: state.tareasproyecto,
+        errortarea: state.errortarea,
         obtenerTareas,
         agregarTarea,
+        validarTarea,
       }}
     >
       {props.children}
