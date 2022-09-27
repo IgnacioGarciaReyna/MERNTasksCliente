@@ -7,6 +7,7 @@ import {
   ELIMINAR_TAREA,
   TAREAS_PROYECTO,
   VALIDAR_TAREA,
+  ESTADO_TAREA,
 } from "../../types";
 
 //Pasamos las props y creamos el state inicial
@@ -75,6 +76,15 @@ const TareaState = (props) => {
     });
   };
 
+  //Cambia el estado de cada tarea
+  //Una vez que presionemos un botón le pasamos la tarea entera al context
+  const cambiarEstadoTarea = (tarea) => {
+    dispatch({
+      type: ESTADO_TAREA,
+      payload: tarea,
+    });
+  };
+
   //Retornamos nuestro context
   //props.children son los otros componentes que son hijos de este
   //En el value le estamos pasando las tareas al provider, las tareas se obtienen de state.tareas porque sería initialState.tareas
@@ -88,6 +98,7 @@ const TareaState = (props) => {
         agregarTarea,
         validarTarea,
         eliminarTarea,
+        cambiarEstadoTarea,
       }}
     >
       {props.children}
