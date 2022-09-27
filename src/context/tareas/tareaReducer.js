@@ -21,7 +21,7 @@ export default (state, action) => {
         ...state,
         //No se agregan en tareasproyecto, se agregan en el state principal
         //vamos a crear un arreglo nuevo de tareas con las que ya tenemos mas la nueva
-        tareas: [...state.tareas, action.payload],
+        tareas: [action.payload, ...state.tareas],
         errortarea: false,
       };
     case VALIDAR_TAREA:
