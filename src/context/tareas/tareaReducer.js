@@ -5,6 +5,7 @@ import {
   VALIDAR_TAREA,
   ESTADO_TAREA,
   TAREA_ACTUAL,
+  ACTUALIZAR_TAREA,
 } from "../../types";
 
 export default (state, action) => {
@@ -36,11 +37,12 @@ export default (state, action) => {
         ...state,
         tareas: state.tareas.filter((tarea) => tarea.id !== action.payload),
       };
+    case ACTUALIZAR_TAREA:
     case ESTADO_TAREA:
       return {
         ...state,
         //Mapeamos todas las tareas, si no cumple la condición retornamos la tarea como estaba, si coincide la modificamos con la nueva tarea
-        tareas: state.tareasproyecto.map((tarea) =>
+        tareas: state.tareas.map((tarea) =>
           tarea.id === action.payload.id ? action.payload : tarea
         ),
       };
@@ -50,6 +52,7 @@ export default (state, action) => {
         //En este caso el payload es la tarea seleccionada
         tareaseleccionada: action.payload,
       };
+
     default:
       return state;
   }
