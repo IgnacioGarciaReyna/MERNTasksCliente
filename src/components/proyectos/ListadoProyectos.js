@@ -16,6 +16,8 @@ const ListadoProyectos = () => {
   //La dependencia es un arreglo vacío para que corra una sola vez cuando se crea el componente
   useEffect(() => {
     obtenerProyectos();
+    //Quitar error
+    // eslint-disable-next-line
   }, []);
 
   //Validar si hay proyectos

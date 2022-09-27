@@ -1,6 +1,7 @@
 import React, { useReducer } from "react";
 import TareaContext from "./tareaContext";
 import TareaReducer from "./tareaReducer";
+import { v4 as uuid } from "uuid";
 
 import {
   AGREGAR_TAREA,
@@ -10,6 +11,7 @@ import {
   ESTADO_TAREA,
   TAREA_ACTUAL,
   ACTUALIZAR_TAREA,
+  LIMPIAR_TAREA,
 } from "../../types";
 
 //Pasamos las props y creamos el state inicial
@@ -57,6 +59,7 @@ const TareaState = (props) => {
   //Agregar una tarea al proyecto seleccionado
   //Toma y pasa una tarea completa (objeto) al state tareaReducer
   const agregarTarea = (tarea) => {
+    tarea.id = uuid();
     dispatch({
       type: AGREGAR_TAREA,
       payload: tarea,
@@ -104,6 +107,13 @@ const TareaState = (props) => {
     });
   };
 
+  //Elimina la tarea seleccionada
+  const limpiarTarea = () => {
+    dispatch({
+      type: LIMPIAR_TAREA,
+    });
+  };
+
   //Retornamos nuestro context
   //props.children son los otros componentes que son hijos de este
   //En el value le estamos pasando las tareas al provider, las tareas se obtienen de state.tareas porque sería initialState.tareas
@@ -121,6 +131,7 @@ const TareaState = (props) => {
         cambiarEstadoTarea,
         guardarTareaActual,
         actualizarTarea,
+        limpiarTarea,
       }}
     >
       {props.children}
