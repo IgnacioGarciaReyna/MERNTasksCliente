@@ -8,6 +8,7 @@ import {
   TAREAS_PROYECTO,
   VALIDAR_TAREA,
   ESTADO_TAREA,
+  TAREA_ACTUAL,
 } from "../../types";
 
 //Pasamos las props y creamos el state inicial
@@ -33,6 +34,7 @@ const TareaState = (props) => {
     //Al principio no va a haber ninguna, porque el usuario tiene que seleccionar alguno
     tareasproyecto: null,
     errortarea: false,
+    tareaseleccionada: null,
   };
 
   //Dispatch y state que vendran de useReducer.
@@ -85,6 +87,14 @@ const TareaState = (props) => {
     });
   };
 
+  //Extrae una tarea para edición
+  const guardarTareaActual = (tarea) => {
+    dispatch({
+      type: TAREA_ACTUAL,
+      payload: tarea,
+    });
+  };
+
   //Retornamos nuestro context
   //props.children son los otros componentes que son hijos de este
   //En el value le estamos pasando las tareas al provider, las tareas se obtienen de state.tareas porque sería initialState.tareas
@@ -94,11 +104,13 @@ const TareaState = (props) => {
         tareas: state.tareas,
         tareasproyecto: state.tareasproyecto,
         errortarea: state.errortarea,
+        tareaseleccionada: state.tareaseleccionada,
         obtenerTareas,
         agregarTarea,
         validarTarea,
         eliminarTarea,
         cambiarEstadoTarea,
+        guardarTareaActual,
       }}
     >
       {props.children}
